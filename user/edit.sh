@@ -153,11 +153,9 @@ if [[ $ec == 3 ]];then
 	echo '4.auth_aes128_sha1'
 	echo '5.verify_deflate'
 	echo '6.auth_chain_a'
-	echo '7.auth_chain_b'
-
 	while :; do echo
 	read -p "输入协议方式： " ux
-	if [[ ! $ux =~ ^[1-7]$ ]]; then
+	if [[ ! $ux =~ ^[1-6]$ ]]; then
 		echo "输入错误! 请输入正确的数字!"
 	else
 		break	
@@ -192,9 +190,6 @@ if [[ $ec == 3 ]];then
 	fi
 	if [[ $ux == 6 ]];then
 		ux1="auth_chain_a"
-	fi
-	if [[ $ux == 7 ]];then
-		ux1="auth_chain_b"
 	fi
 
 	if [[ $ifprotocolcompatible == y ]]; then

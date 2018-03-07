@@ -118,13 +118,13 @@ if [[ $serverc == 7 ]];then
 
 	if [[ ${OS} == CentOS ]];then
 		if [[ $CentOS_RHEL_version == 7 ]];then
-			iptables-restore < /etc/iptables.up.rules
-			iptables -I INPUT -m state --state NEW -m tcp -p tcp --dport $cgiport -j ACCEPT
-    		iptables -I INPUT -m state --state NEW -m udp -p udp --dport $cgiport -j ACCEPT
-			iptables-save > /etc/iptables.up.rules
+			systemctl start firewalld.service
+			firewall-cmd --zone=public --add-port=$cgiport/tcp --permanent
+			firewall-cmd --zone=public --add-port=$cgiport/udp --permanent
+			firewall-cmd --reload
 		else
 			iptables -I INPUT -m state --state NEW -m tcp -p tcp --dport $cgiport -j ACCEPT
-    		iptables -I INPUT -m state --state NEW -m udp -p udp --dport $cgiport -j ACCEPT
+    		        iptables -I INPUT -m state --state NEW -m udp -p udp --dport $cgiport -j ACCEPT
 			/etc/init.d/iptables save
 			/etc/init.d/iptables restart
 		fi
@@ -186,4 +186,3 @@ bash /usr/local/shadowsocksr/logrun.sh
         echo ""
 	bash /usr/local/SSR-Bash-Python/server.sh
 fi
-
