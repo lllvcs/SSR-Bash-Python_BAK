@@ -67,7 +67,7 @@ bash initcfg.sh
 #Install Libsodium
 cd $workdir
 export LIBSODIUM_VER=1.0.11
-wget -N --no-check-certificate https://github.com/jedisct1/libsodium/releases/download/1.0.11/libsodium-$LIBSODIUM_VER.tar.gz
+wget -N --no-check-certificate https://github.com/jedisct1/libsodium/releases/download/1.0.16/libsodium-$LIBSODIUM_VER.tar.gz
 tar xvf libsodium-$LIBSODIUM_VER.tar.gz
 pushd libsodium-$LIBSODIUM_VER
 ./configure --prefix=/usr && make
